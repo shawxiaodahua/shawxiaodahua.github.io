@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XiaoXiao Peng | Multimodal LLM & VLA Engineer</title>
+  <meta name="description" content="XiaoXiao Peng — multimodal LLM, VLA and embodied intelligence engineer. Built production medical-data AI at Ant Group and production BEV parking perception at Smart Auto.">
+  <meta name="keywords" content="XiaoXiao Peng, Multimodal LLM, VLA, Embodied AI, BEV Perception, Computer Vision">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="shell">
+
+    <aside class="rail">
+      <div class="rail-card">
+        <div class="avatar" data-brand-mark="XiaoXiao Peng" aria-hidden="true">XP</div>
+        <h1 class="rail-name">XiaoXiao Peng<span aria-hidden="true">Peng Xiaoxiao</span></h1>
+        <p class="rail-positioning">Multimodal LLM · VLA · Embodied AI</p>
+        <p class="rail-meta">Hangzhou, China · Open to opportunities</p>
+
+        <nav class="rail-nav" aria-label="Sections">
+          <a href="#work" class="is-active" aria-current="true">Selected Work</a>
+          <a href="#innovation">Innovation</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+          <a href="work.html">Full Technical Detail</a>
+          <a href="writing.html">Writing</a>
+        </nav>
+
+        <div class="rail-contact">
+          <a href="mailto:18650113070@163.com"><span>Email</span><span aria-hidden="true">&#9993;</span></a>
+          <button type="button" data-copy-text="18650113070" aria-describedby="wechat-hint"><span class="label">WeChat</span><span class="visually-hidden" data-copy-status aria-live="polite"></span><span aria-hidden="true">&#128172;</span></button>
+          <a href="https://www.zhihu.com/people/MR-Peng" target="_blank" rel="noopener noreferrer"><span>Zhihu</span><span aria-hidden="true">&#8599;</span></a>
+          <a href="https://github.com/shawxiaodahua" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span aria-hidden="true">&#8599;</span></button>
+        </div>
+        <p class="visually-hidden" id="wechat-hint">Copies the WeChat ID to your clipboard.</p>
+      </div>
+    </aside>
+
+    <main class="main-col" id="main" tabindex="-1">
+
+      <section class="section" id="work">
+        <h2>Selected Work</h2>
+
+        <article class="work-card">
+          <h3>Rubric Data Pipeline & AI-Assisted Annotation <span class="org">· Ant Group, 2025.07 – 2026.01</span></h3>
+          <p>Built the human-in-the-loop data production and model-optimisation loop for empathetic medical dialogue: expert alignment, dynamic rubric generation, GPT-assisted query rewriting, and LLM-as-judge pairwise ranking, with rubrics reused as the reward signal for RL.</p>
+          <p>Also led a LangChain/ReAct workflow that automates medical text annotation, and a three-tier automated QC pipeline whose SFT-tuned multimodal fact-checking raised data acceptance accuracy by 50%.</p>
+          <div class="chips">
+            <span class="chip">Annotation accuracy +40%</span>
+            <span class="chip">Throughput +50%</span>
+            <span class="chip">SFT +2.24 pt</span>
+            <span class="chip">RL +5.63 pt</span>
+            <span class="chip">Thumbs-up/down +6.5% to +13%</span>
+            <span class="chip plain">Full rollout</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>SmartMapNet <span class="org">· Smart Auto, 2024.06 – 2025.06</span></h3>
+          <p>Online vectorized HD-map perception covering lane lines, parking-space lines, low-lying static obstacles and traffic signs from 7 surround-view cameras plus LiDAR, on Nvidia Orin X.</p>
+          <p>MapTR-based encoder/decoder with LSS view transformation, BEVSeg and PVSeg auxiliary supervision, VDDL loss for geometric distortion, a dedicated two-stage polygon matcher for low obstacles, and PTQ post-training quantization for deployment.</p>
+          <div class="chips">
+            <span class="chip">7V + LiDAR</span>
+            <span class="chip">Orin X</span>
+            <span class="chip">PTQ quantized</span>
+            <span class="chip plain">Shipped on AVP / LP</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>Parking_OneNet <span class="org">· Smart Auto, 2022.09 – 2024.09</span></h3>
+          <p>Single multi-task 2D network over four fisheye IPM bird's-eye views detecting in-space static obstacles — wheel stops, ground locks — and wall/column ground contact points, deployed on Orin N.</p>
+          <p>Customised angle prediction with KLD loss and PSC encoding, RANSAC contact-point refinement, AB-point and depth-based pose correction, corner-rotation handling for tilted scenes, and Kalman fusion to stop box jitter at IPM seams.</p>
+          <div class="chips">
+            <span class="chip">4× fisheye IPM</span>
+            <span class="chip">Orin N</span>
+            <span class="chip">>95% parking success</span>
+            <span class="chip plain">APA / RPA / RSPA production</span>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <h3>VLA-Handbook <span class="org">· Independent, ongoing</span></h3>
+          <p>An open-source handbook and working notes on vision-language-action models: control stacks, data collection routes, evaluation, and scaling behaviour, kept as a running record of self-directed study.</p>
+          <p><a href="https://github.com/shawxiaodahua/VLA-Handbook" target="_blank" rel="noopener noreferrer">github.com/shawxiaodahua/VLA-Handbook</a></p>
+          <div class="chips">
+            <span class="chip">Open source</span>
+            <span class="chip plain">VLA · embodied intelligence</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="section" id="innovation">
+        <h2>Innovation</h2>
+
+        <article class="work-card">
+          <h3>Rubric Data Pipeline <span class="org">· Ant Group</span></h3>
+          <p>Human-in-the-loop data production loop for empathetic medical dialogue with dynamic rubric generation, GPT-assisted query rewriting, and LLM-as-judge pairwise ranking. Rubrics reused as RL reward signal. Data acceptance accuracy improved by 50%.</p>
+        </article>
+
+        <article class="work-card">
+          <h3>SmartMapNet <span class="org">· Smart Auto</span></h3>
+          <p>Online vectorized HD-map perception from 7 surround-view cameras + LiDAR on Nvidia Orin X. MapTR encoder/decoder with LSS view transformation, BEVSeg/PVSeg auxiliary supervision, VDDL loss for geometric distortion, and two-stage polygon matcher for low obstacles.</p>
+        </article>
+
+        <article class="work-card">
+          <h3>Parking_OneNet <span class="org">· Smart Auto</span></h3>
+          <p>2D multi-task network over four fisheye IPM bird's-eye views detecting wheel stops, ground locks, walls and columns. PTQ-quantized for Orin N deployment. >95% parking success in production.</p>
+        </article>
+
+        <article class="work-card">
+          <h3>VLA-Handbook <span class="org">· Ongoing</span></h3>
+          <p>Open-source handbook on vision-language-action models covering control stacks, data collection, evaluation, and scaling behaviour. Self-directed study record.</p>
+        </article>
+      </section>
+
+      <section class="section" id="blog">
+        <h2>Blog</h2>
+
+        <p>Recent posts:</p>
+        <ul class="post-list">
+          <li>
+            <a class="post-link" href="writing.html" data-md="" data-meta="" data-title="Writing Portfolio">
+              Writing Portfolio
+            </a>
+          </li>
+          <!-- Blog posts will be dynamically loaded from /manuscripts/ -->
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="logo-bar" aria-label="Affiliations">
+    <a href="https://www.antgroup.com/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/ant.svg" alt="Ant Group"></a>
+    <a href="https://www.smart.com.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/smart.svg" alt="Smart Auto"></a>
+    <a href="https://www.dahuatech.com/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/dahua.svg" alt="Dahua Technology"></a>
+    <a href="https://www.hqu.edu.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/hqu.svg" alt="Huaqiao University"></a>
+    <a href="https://www.ncau.edu.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/ncau.svg" alt="Nanchang University of Aeronautics and Astronautics"></a>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

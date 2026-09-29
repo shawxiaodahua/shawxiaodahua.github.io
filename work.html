@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work | XiaoXiao Peng</title>
+  <meta name="description" content="Technical deep dive: Rubric data pipeline, SmartMapNet online vectorized mapping, Parking_OneNet IPM parking perception, and edge vision projects.">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="shell">
+
+    <aside class="rail">
+      <div class="rail-card">
+        <div class="avatar" data-brand-mark="XiaoXiao Peng" aria-hidden="true">XP</div>
+        <h1 class="rail-name">XiaoXiao Peng<span aria-hidden="true">Peng Xiaoxiao</span></h1>
+        <p class="rail-positioning">Multimodal LLM · VLA · Embodied AI</p>
+        <p class="rail-meta">Hangzhou, China · Open to opportunities</p>
+
+        <nav class="rail-nav" aria-label="Pages">
+          <a href="index.html">Home</a>
+          <a href="#ant-rubric" class="is-active" aria-current="true">Rubric Pipeline</a>
+          <a href="#smartmapnet">SmartMapNet</a>
+          <a href="#parking-onenet">Parking_OneNet</a>
+          <a href="#dahua-parking">Smart Parking Lot</a>
+          <a href="#dahua-airport">Airport Events</a>
+          <a href="writing.html">Writing</a>
+        </nav>
+
+        <div class="rail-contact">
+          <a href="mailto:18650113070@163.com"><span>Email</span><span aria-hidden="true">&#9993;</span></a>
+          <button type="button" data-copy-text="18650113070" aria-describedby="wechat-hint"><span class="label">WeChat</span><span class="visually-hidden" data-copy-status aria-live="polite"></span><span aria-hidden="true">&#128172;</span></button>
+          <a href="https://www.zhihu.com/people/MR-Peng" target="_blank" rel="noopener noreferrer"><span>Zhihu</span><span aria-hidden="true">&#8599;</span></a>
+          <a href="https://github.com/shawxiaodahua" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <p class="visually-hidden" id="wechat-hint">Copies the WeChat ID to your clipboard.</p>
+      </div>
+    </aside>
+
+    <main class="main-col" id="main" tabindex="-1">
+
+      <section class="section" id="ant-rubric">
+        <h2>Rubric Data Pipeline &amp; AI-Assisted Annotation</h2>
+        <p class="eyebrow">Ant Group · Alipay, Hangzhou · 2025.07 – 2026.01</p>
+
+        <h3>Problem</h3>
+        <p>Medical dialogue data has no agreed standard for "empathetic", no way to score it consistently between annotators, and no path from a score back into training. Three projects ran in sequence to close that loop: an annotation-assistance system, a three-tier quality-inspection system, and a Rubric-based data paradigm that turns evaluation into a training signal.</p>
+
+        <h3>AI-assisted annotation system</h3>
+        <p>A LangChain/ReAct agent over a structured workflow automates medical text annotation, fusing medical RAG with the LLM so that guideline context is retrieved before a label is proposed.</p>
+        <ul>
+          <li>Annotation accuracy improved 40% against the manual baseline.</li>
+          <li>Processing throughput improved 50%.</li>
+        </ul>
+
+        <h3>Three-tier quality inspection</h3>
+        <p>A three-stage pipeline automates inspection end to end — collection, annotation, then acceptance — with an SFT-tuned model performing multimodal fact verification at the final tier.</p>
+        <ul>
+          <li>Data acceptance accuracy improved 50%.</li>
+          <li>Closed the data loop for downstream business training and product launch.</li>
+        </ul>
+
+        <h3>Rubric data paradigm</h3>
+        <p>An end-to-end system for human-in-the-loop data production and model optimisation targeting improved empathy in medical conversations, solving three problems at once: standards that were hard to unify, evaluation that was hard to quantify, and training that was hard to align. The pipeline runs expert alignment, dynamic rubric generation, GPT-assisted query rewriting for the human-in-the-loop loop, and LLM-as-judge pairwise ranking — producing rubrics automatically, iterating the evaluation model, automating SFT-corpus polishing, and selecting RL queries. The resulting rubrics are then reused directly as the reward signal for RL training.</p>
+        <ul>
+          <li>SFT model: +2.24 points on the offline empathy benchmark.</li>
+          <li>RL model: +5.63 points on the same benchmark.</li>
+          <li>Online A/B: thumbs-up/down ratio improved from 6.5% to 13%.</li>
+          <li>Resulting model versions reached full rollout.</li>
+        </ul>
+
+        <h3>Open source</h3>
+        <p><a href="https://github.com/inclusionAI/ABench" target="_blank" rel="noopener noreferrer">inclusionAI/ABench</a> — ABench, released as open source.</p>
+      </section>
+
+      <section class="section" id="smartmapnet">
+        <h2>SmartMapNet — Online Vectorized HD Map Perception</h2>
+        <p class="eyebrow">Smart Auto · 2024.06 – 2025.06</p>
+
+        <h3>Setup</h3>
+        <ul>
+          <li><strong>Sensors:</strong> 7 surround-view cameras plus LiDAR.</li>
+          <li><strong>Platform:</strong> Nvidia Orin X.</li>
+        </ul>
+
+        <h3>Approach</h3>
+        <p>A multi-task static-perception framework producing an online vectorized HD map, covering lane lines, parking-space lines, low-lying static obstacles and traffic-sign detection. It is built on MapTR and splits into an encoder and a decoder.</p>
+        <ul>
+          <li><strong>Encoder:</strong> image feature extraction with ResNet50, plus BEV feature encoding via LSS.</li>
+          <li><strong>Decoder:</strong> Transformer-based, built from stacked self-attention and cross-attention layers.</li>
+          <li><strong>Supervision:</strong> BEVSeg and PVSeg auxiliary losses sharpen semantic understanding.</li>
+          <li><strong>Low obstacles:</strong> a dedicated regression head using spatial polygons with a two-stage matcher, because low obstacles are poorly served by the default quad representation.</li>
+          <li><strong>Geometry:</strong> dynamic task sampling balances data distribution across tasks; VDDL (vector direction difference loss) fixes the line twisting seen in curves and turns.</li>
+          <li><strong>Deployment:</strong> PTQ post-training quantization limits the accuracy lost from FP32, and Kalman filtering fused with odometry stabilises tracking and pose estimation.</li>
+        </ul>
+
+        <h3>Challenges</h3>
+        <p>Non-homologous training data; fisheye projection into LSS; spatial quadrilateral regression; and the long tail of vehicle corner cases.</p>
+
+        <h3>Outcome</h3>
+        <p>Closed-loop vehicle-side testing completed; shipped on the AVP and LP programs.</p>
+      </section>
+
+      <section class="section" id="parking-onenet">
+        <h2>Parking_OneNet — IPM Parking Perception</h2>
+        <p class="eyebrow">Smart Auto · 2022.09 – 2024.09</p>
+
+        <h3>Setup</h3>
+        <ul>
+          <li><strong>Imaging:</strong> four fisheye cameras covering front, rear, left and right, combined by IPM inverse perspective mapping into a surround bird's-eye view.</li>
+          <li><strong>Platform:</strong> Nvidia Orin N.</li>
+        </ul>
+
+        <h3>Approach</h3>
+        <p>A single multi-task 2D network over the four fisheye bird's-eye views, trained with a differential multi-scale feature fusion framework. Two target families get different treatment:</p>
+        <ul>
+          <li><strong>In-space static obstacles</strong> (wheel stops, ground locks) use a rotated-box detector regressing both position and orientation. Angle prediction is improved with KLD loss and PSC encoding.</li>
+          <li><strong>Walls and columns</strong> use a keypoint-polygon detector regressing the ground contact point, with RANSAC applied to the network's point-set output to recover a more accurate contact point.</li>
+        </ul>
+
+        <h3>Vehicle-side post-processing</h3>
+        <ul>
+          <li>Parking-space AB points correct wheel-stop orientation; parking-space depth corrects wheel-stop pose.</li>
+          <li>A corner-rotation algorithm adapts wheel-stop orientation in tilted out-of-vehicle scenarios, handling the dual-wheel-stop case.</li>
+          <li>History-frame weighted fusion removes box jitter at IPM seams.</li>
+          <li>Kalman-filter motion modelling compensates for apparent wheel-stop motion caused by image stretching during parking.</li>
+        </ul>
+
+        <h3>Challenges</h3>
+        <p>Wide real-world variation in wheel stops and ground locks; walls and columns easily confused with other scene elements; severe stretching in IPM output and the resulting ground-plane estimation error; and target jitter at IPM seams.</p>
+
+        <h3>Outcome</h3>
+        <p>APA, RPA and RSPA reached production with continued OTA iteration. Parking success exceeded 95% in open scenes, and AVP completed closed-loop vehicle integration.</p>
+      </section>
+
+      <section class="section" id="dahua-parking">
+        <h2>Smart Parking Lot — Rotated Object Detection at the Edge</h2>
+        <p class="eyebrow">Dahua Technology · 2021.07 – 2021.11</p>
+
+        <h3>Setup</h3>
+        <ul>
+          <li><strong>Imaging:</strong> oblique cameras at 6 m, 12 m and 20 m covering indoor parking areas at airports, ports and expressway service stations.</li>
+          <li><strong>Platforms:</strong> HiSilicon 3559A, Cambricon 220, Ascend, Atlas 310.</li>
+        </ul>
+
+        <h3>Approach</h3>
+        <ul>
+          <li>Mosaic augmentation for sample diversity, plus a sliding-window scheme that expands the count of each vehicle class on purpose.</li>
+          <li>YOLOv5 with a ring-shaped smooth loss for angle prediction, and ShuffleNet swapped in as the backbone to fit the edge budget.</li>
+          <li>Result: a rotated object detector that became part of the company's core algorithm library.</li>
+        </ul>
+
+        <h3>Outcome</h3>
+        <p>Capture rate 95.56% and accuracy 95.80% — up 0.5 and 1.0 points over baseline.</p>
+      </section>
+
+      <section class="section" id="dahua-airport">
+        <h2>Airport Turnaround Node Event Detection</h2>
+        <p class="eyebrow">Dahua Technology · 2021.11 – 2022.09</p>
+
+        <h3>Setup</h3>
+        <ul>
+          <li><strong>Imaging:</strong> 8 MP and 4 MP cameras at apron, side and jet-bridge interior positions.</li>
+          <li><strong>Platforms:</strong> Tesla T4, Cambricon 220.</li>
+        </ul>
+
+        <h3>Approach</h3>
+        <ul>
+          <li>Cutout and Albumentations augmentation, plus offline sampling to raise the frequency of rare targets.</li>
+          <li>An added small-object detection head on YOLOv5 improves small-target feature learning, and a second-stage recognition pass lifts recall on fuel-hose, wheel-chock and similar small objects.</li>
+          <li>Detected aircraft, aircraft components, jet-bridge state and service vehicles feed a motion-state model based on IoU matching rules; events are then encoded as logic status codes and reported per turnaround node.</li>
+        </ul>
+
+        <h3>Outcome</h3>
+        <p>Two airport projects won; algorithm competitive evaluations passed at several airports.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="logo-bar" aria-label="Affiliations">
+    <a href="https://www.antgroup.com/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/ant.svg" alt="Ant Group"></a>
+    <a href="https://www.smart.com.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/smart.svg" alt="Smart Auto"></a>
+    <a href="https://www.dahuatech.com/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/dahua.svg" alt="Dahua Technology"></a>
+    <a href="https://www.hqu.edu.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/hqu.svg" alt="Huaqiao University"></a>
+    <a href="https://www.ncau.edu.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/ncau.svg" alt="Nanchang University of Aeronautics and Astronautics"></a>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
