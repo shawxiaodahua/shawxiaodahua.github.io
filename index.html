@@ -154,20 +154,27 @@
       margin-bottom: 2rem;
       box-shadow: var(--shadow-lg);
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: flex-start;
-      gap: 0.25rem;
+      gap: 1.5rem;
       animation: fadeIn 0.6s ease;
+      position: relative;
     }
 
     .hero-photo {
-      width: 96px;
-      height: 96px;
-      border-radius: 14px;
+      width: 150px;
+      height: 150px;
+      border-radius: 18px;
       object-fit: cover;
       object-position: center 30%;
-      margin-bottom: 1rem;
-      box-shadow: var(--shadow);
+      flex-shrink: 0;
+      margin-left: auto;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 0;
     }
 
     .hero-content h1 {
@@ -493,11 +500,15 @@
 
       .hero {
         padding: 1.5rem;
+        flex-direction: column-reverse;
+        gap: 1rem;
       }
 
       .hero-photo {
-        width: 72px;
-        height: 72px;
+        width: 110px;
+        height: 110px;
+        margin: 0;
+        align-self: flex-start;
       }
 
       .hero-content h1 {
@@ -602,7 +613,6 @@
   <div class="container">
     <section id="about" class="hero view-panel is-active" data-panel="about">
       <div class="hero-content">
-        <img class="hero-photo" src="pics/photo/avatar.jpg" alt="XiaoXiao Peng" loading="lazy">
         <h1>XiaoXiao Peng<span class="lang-zh-only" style="font-size: 0.7em; margin-left: 0.5rem;" data-zh="彭肖肖" data-en="XiaoXiao Peng">彭肖肖</span></h1>
         <div class="tagline i18n" data-en="Senior Algorithm Engineer 10x" data-zh="资深算法工程师 10x">Senior Algorithm Engineer 10x</div>
         <div class="research i18n" data-en="Research Areas: <strong>Physical AI</strong>, <strong>Multimodal Perception Algorithms</strong>" data-zh="研究领域：<strong>物理AI</strong>、<strong>多模态感知算法</strong>">Research Areas: <strong>Physical AI</strong>, <strong>Multimodal Perception Algorithms</strong></div>
@@ -617,6 +627,7 @@
           <button type="button" class="copy-btn wechat-copy" data-copy-text="18650113070" data-label="WeChat" aria-label="Copy WeChat ID 18650113070"><span aria-hidden="true">💬</span> <span class="copy-label">WeChat</span></button>
         </div>
       </div>
+      <img class="hero-photo" src="pics/photo/avatar.jpg" alt="XiaoXiao Peng" loading="lazy">
     </section>
 
 
