@@ -7,9 +7,9 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" href="favicon.ico">
-  <meta name="keywords" content="XiaoXiao Peng, 彭肖肖, Algorithm Engineer, Computer Vision, Multimodal LLM, Autonomous Driving">
-  <meta name="description" content="XiaoXiao Peng 彭肖肖 — 算法开发工程师，专注多模态大模型、计算机视觉与自动驾驶感知。">
-  <title>XiaoXiao Peng | 算法开发工程师</title>
+  <meta name="keywords" content="XiaoXiao Peng, 彭肖肖, Senior Algorithm Engineer, Computer Vision, Multimodal LLM, Autonomous Driving">
+  <meta name="description" content="XiaoXiao Peng (彭肖肖) — Senior Algorithm Engineer 10x, focused on multimodal LLMs, computer vision & autonomous driving perception.">
+  <title>XiaoXiao Peng | Senior Algorithm Engineer</title>
 
   <style>
     * {
@@ -114,11 +114,9 @@
       background: rgba(37, 99, 235, 0.08);
     }
 
-    /* i18n: default English; add .lang-zh to body to switch to Chinese */
-    .i18n { display: none; }
-    .i18n[data-en] { display: revert; }
-    body.lang-zh .i18n[data-en] { display: none; }
-    body.lang-zh .i18n[data-zh] { display: revert; }
+    /* i18n: default English; add .lang-zh to body to switch to Chinese.
+       Elements with .i18n carry data-en / data-zh and are swapped by JS.
+       .lang-zh-only elements are hidden by default, shown in Chinese mode. */
     .lang-zh-only { display: none; }
     body.lang-zh .lang-zh-only { display: inline; }
 
@@ -593,10 +591,10 @@
       <div class="hero-content">
         <img class="hero-photo" src="pics/photo/avatar.jpg" alt="XiaoXiao Peng" loading="lazy">
         <h1>XiaoXiao Peng<span class="lang-zh-only" style="font-size: 0.7em; margin-left: 0.5rem;" data-zh="彭肖肖" data-en="XiaoXiao Peng">彭肖肖</span></h1>
-        <div class="tagline i18n" data-en="Algorithm Engineer · Multimodal LLMs &amp; Autonomous Driving Perception" data-zh="算法开发工程师 · 多模态大模型与自动驾驶感知">算法开发工程师 · 多模态大模型与自动驾驶感知</div>
-        <div class="experience i18n" data-en="Worked at <strong>Dahua</strong>, <strong>Smart (Mercedes)</strong>, <strong>Ant Group</strong> and <strong>Sany</strong> on environment perception &amp; multimodal LLM algorithms." data-zh="先后于 <strong>大华股份</strong>、<strong>smart 汽车</strong>、<strong>蚂蚁集团</strong>、<strong>三一集团</strong> 从事环境感知与多模态大模型算法开发。">先后于 <strong>大华股份</strong>、<strong>smart 汽车</strong>、<strong>蚂蚁集团</strong>、<strong>三一集团</strong> 从事环境感知与多模态大模型算法开发。</div>
-        <div class="education i18n" data-en="M.S., Huaqiao University; B.S., Nanchang Hangkong University." data-zh="硕士毕业于 <strong>华侨大学</strong>，本科 <strong>南昌航空大学</strong>。">硕士毕业于 <strong>华侨大学</strong>，本科 <strong>南昌航空大学</strong>。</div>
-        <div class="skills i18n" data-en="Proficient in <code>C / C++ / Python</code>, <code>PyTorch / TensorFlow</code>, <code>MATLAB</code>, <code>K8s</code>, <code>Docker</code>." data-zh="熟练 <code>C / C++ / Python</code>、<code>PyTorch / TensorFlow</code>、<code>MATLAB</code>、<code>K8s</code>、<code>Docker</code>。">熟练 <code>C / C++ / Python</code>、<code>PyTorch / TensorFlow</code>、<code>MATLAB</code>、<code>K8s</code>、<code>Docker</code>。</div>
+        <div class="tagline i18n" data-en="Senior Algorithm Engineer 10x · Multimodal LLMs &amp; Autonomous Driving Perception" data-zh="资深算法工程师 10x · 多模态大模型与自动驾驶感知">Senior Algorithm Engineer 10x · Multimodal LLMs &amp; Autonomous Driving Perception</div>
+        <div class="experience i18n" data-en="Worked at <strong>Dahua</strong>, <strong>Smart (Mercedes)</strong>, <strong>Ant Group</strong> and <strong>Sany</strong> on environment perception &amp; multimodal LLM algorithms." data-zh="先后于 <strong>大华股份</strong>、<strong>smart 汽车</strong>、<strong>蚂蚁集团</strong>、<strong>三一集团</strong> 从事环境感知与多模态大模型算法开发。">Worked at <strong>Dahua</strong>, <strong>Smart (Mercedes)</strong>, <strong>Ant Group</strong> and <strong>Sany</strong> on environment perception &amp; multimodal LLM algorithms.</div>
+        <div class="education i18n" data-en="M.S., Huaqiao University; B.S., Nanchang Hangkong University." data-zh="硕士毕业于 <strong>华侨大学</strong>，本科 <strong>南昌航空大学</strong>。">M.S., Huaqiao University; B.S., Nanchang Hangkong University.</div>
+        <div class="skills i18n" data-en="Proficient in <code>C / C++ / Python</code>, <code>PyTorch / TensorFlow</code>, <code>MATLAB</code>, <code>K8s</code>, <code>Docker</code>." data-zh="熟练 <code>C / C++ / Python</code>、<code>PyTorch / TensorFlow</code>、<code>MATLAB</code>、<code>K8s</code>、<code>Docker</code>。">Proficient in <code>C / C++ / Python</code>, <code>PyTorch / TensorFlow</code>, <code>MATLAB</code>, <code>K8s</code>, <code>Docker</code>.</div>
         <div class="social-links">
           <a href="https://github.com/shawxiaodahua" target="_blank"><span>🔗</span> GitHub</a>
           <a href="https://www.zhihu.com/people/MR-Peng" target="_blank" rel="noopener noreferrer"><span>📝</span> Zhihu</a>
@@ -701,7 +699,7 @@
       </div>
     </section>
 
-    <div class="section-title">Work Experience 工作经历</div>
+    <div class="section-title i18n" data-en="Work Experience" data-zh="Work Experience 工作经历">Work Experience</div>
     <div class="experience-logos">
       <div class="experience-logo-item">
         <img src="pics/logos/dahua.png" alt="Dahua" loading="lazy">
@@ -721,9 +719,7 @@
       </div>
     </div>
 
-    <footer style="text-align:center; color: rgba(255,255,255,0.85); font-size: 0.85rem; padding: 0.5rem 1rem 2rem;">
-      © 2026 XiaoXiao Peng · 彭肖肖 — 用技术让感知更智能
-    </footer>
+    <footer id="site-footer" style="text-align:center; color: rgba(255,255,255,0.85); font-size: 0.85rem; padding: 0.5rem 1rem 2rem;" data-en="&copy; 2026 XiaoXiao Peng &mdash; Making perception smarter with technology" data-zh="&copy; 2026 XiaoXiao Peng · 彭肖肖 &mdash; 用技术让感知更智能">&copy; 2026 XiaoXiao Peng &mdash; Making perception smarter with technology</footer>
   </div>
   <script>
     (function () {
@@ -765,10 +761,21 @@
       });
 
       var langToggle = document.getElementById('lang-toggle');
+      var footerEl = document.getElementById('site-footer');
       function applyLang(lang) {
-        document.body.classList.toggle('lang-zh', lang === 'zh');
-        document.documentElement.lang = (lang === 'zh') ? 'zh-CN' : 'en';
-        if (langToggle) langToggle.textContent = (lang === 'zh') ? 'EN' : '中文';
+        var isZh = lang === 'zh';
+        document.body.classList.toggle('lang-zh', isZh);
+        document.documentElement.lang = isZh ? 'zh-CN' : 'en';
+        document.title = isZh ? 'XiaoXiao Peng | 资深算法工程师 10x' : 'XiaoXiao Peng | Senior Algorithm Engineer';
+        document.querySelectorAll('.i18n').forEach(function (el) {
+          var content = el.getAttribute(isZh ? 'data-zh' : 'data-en');
+          if (content !== null) el.innerHTML = content;
+        });
+        if (footerEl) {
+          var f = footerEl.getAttribute(isZh ? 'data-zh' : 'data-en');
+          if (f !== null) footerEl.innerHTML = f;
+        }
+        if (langToggle) langToggle.textContent = isZh ? 'EN' : '中文';
         try { localStorage.setItem('cv-site-lang', lang); } catch (e) {}
       }
       applyLang((function () { try { return localStorage.getItem('cv-site-lang') || 'en'; } catch (e) { return 'en'; } })());
