@@ -251,15 +251,7 @@
       color: white;
     }
 
-    .email-link {
-      font-size: 0.9rem;
-      padding: 0.55rem 0.75rem !important;
-      background: var(--bg-light) !important;
-      color: var(--text-dark) !important;
-      font-weight: 400;
-    }
-
-    .wechat-copy {
+    .copy-btn {
       position: relative;
       overflow: hidden;
       font-size: 0.9rem;
@@ -269,7 +261,7 @@
       font-weight: 400;
     }
 
-    .wechat-copy::after {
+    .copy-btn::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -280,13 +272,13 @@
       pointer-events: none;
     }
 
-    .wechat-copy.is-copied {
+    .copy-btn.is-copied {
       background: #dcfce7 !important;
       color: #166534 !important;
       animation: copyPop 0.45s ease;
     }
 
-    .wechat-copy.is-copied::after {
+    .copy-btn.is-copied::after {
       opacity: 1;
       transform: scale(1);
     }
@@ -609,8 +601,8 @@
           <a href="https://github.com/shawxiaodahua" target="_blank"><span>🔗</span> GitHub</a>
           <a href="https://www.zhihu.com/people/MR-Peng" target="_blank" rel="noopener noreferrer"><span>📝</span> Zhihu</a>
 
-          <a href="mailto:18650113070@163.com" class="email-link"><span>📧</span> Email</a>
-          <button type="button" class="wechat-copy" data-copy-text="18650113070" aria-label="Copy WeChat ID 18650113070"><span aria-hidden="true">💬</span> <span class="wechat-copy-label">WeChat</span></button>
+          <button type="button" class="copy-btn email-copy" data-copy-text="18650113070@163.com" data-label="Email" aria-label="Copy email 18650113070@163.com"><span aria-hidden="true">📧</span> <span class="copy-label">Email</span></button>
+          <button type="button" class="copy-btn wechat-copy" data-copy-text="18650113070" data-label="WeChat" aria-label="Copy WeChat ID 18650113070"><span aria-hidden="true">💬</span> <span class="copy-label">WeChat</span></button>
         </div>
       </div>
     </section>
@@ -784,16 +776,17 @@
         applyLang(document.body.classList.contains('lang-zh') ? 'en' : 'zh');
       });
 
-      document.querySelectorAll('.wechat-copy').forEach(function (btn) {
+      document.querySelectorAll('.copy-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var text = btn.getAttribute('data-copy-text') || '';
+          var defaultLabel = btn.getAttribute('data-label') || 'Copy';
           function done() {
             btn.classList.add('is-copied');
-            var label = btn.querySelector('.wechat-copy-label');
+            var label = btn.querySelector('.copy-label');
             if (label) label.textContent = '已复制';
             setTimeout(function () {
               btn.classList.remove('is-copied');
-              if (label) label.textContent = 'WeChat';
+              if (label) label.textContent = defaultLabel;
             }, 1800);
           }
           if (navigator.clipboard && navigator.clipboard.writeText) {
