@@ -1,148 +1,794 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XiaoXiao Peng | Multimodal LLM & VLA Engineer</title>
-  <meta name="description" content="XiaoXiao Peng — multimodal LLM, VLA and embodied intelligence engineer. Built production medical-data AI at Ant Group and production BEV parking perception at Smart Auto.">
-  <meta name="keywords" content="XiaoXiao Peng, Multimodal LLM, VLA, Embodied AI, BEV Perception, Computer Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css">
+  <meta name="keywords" content="XiaoXiao Peng, 彭肖肖, Algorithm Engineer, Computer Vision, Multimodal LLM, Autonomous Driving">
+  <meta name="description" content="XiaoXiao Peng 彭肖肖 — 算法开发工程师，专注多模态大模型、计算机视觉与自动驾驶感知。">
+  <title>XiaoXiao Peng | 算法开发工程师</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #3b82f6;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-attachment: fixed;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+
+    nav .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+    }
+
+    nav a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after,
+    nav a.is-active::after {
+      width: 80%;
+    }
+
+    nav a:hover,
+    nav a.is-active {
+      color: var(--primary-color);
+      background: var(--bg-light);
+    }
+
+    .view-panel {
+      display: none;
+    }
+
+    .view-panel.is-active {
+      display: block;
+      animation: fadeIn 0.45s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .hero {
+      background: var(--bg-white);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .hero-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 14px;
+      object-fit: cover;
+      object-position: center 30%;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content .tagline {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content .experience,
+    .hero-content .education,
+    .hero-content .skills {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content .experience strong,
+    .hero-content .education strong {
+      font-weight: 600;
+    }
+
+    .hero-content .skills {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content .skills code {
+      font-size: 0.9em;
+      background: var(--bg-light);
+      padding: 0.1em 0.4em;
+      border-radius: 4px;
+      color: var(--text-dark);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .social-links a,
+    .social-links button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.55rem 0.75rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      min-height: 40px;
+      flex: 0 0 auto;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .social-links a:hover,
+    .social-links button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .social-links button {
+      border: 0;
+      color: white;
+    }
+
+    .email-link {
+      font-size: 0.9rem;
+      padding: 0.55rem 0.75rem !important;
+      background: var(--bg-light) !important;
+      color: var(--text-dark) !important;
+      font-weight: 400;
+    }
+
+    .wechat-copy {
+      position: relative;
+      overflow: hidden;
+      font-size: 0.9rem;
+      padding: 0.55rem 0.75rem !important;
+      background: var(--bg-light) !important;
+      color: var(--text-dark) !important;
+      font-weight: 400;
+    }
+
+    .wechat-copy::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(34, 197, 94, 0.16);
+      opacity: 0;
+      transform: scale(0.75);
+      transition: opacity 0.28s ease, transform 0.28s ease;
+      pointer-events: none;
+    }
+
+    .wechat-copy.is-copied {
+      background: #dcfce7 !important;
+      color: #166534 !important;
+      animation: copyPop 0.45s ease;
+    }
+
+    .wechat-copy.is-copied::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @keyframes copyPop {
+      0% {
+        transform: translateY(-2px) scale(1);
+      }
+
+      45% {
+        transform: translateY(-3px) scale(1.04);
+      }
+
+      100% {
+        transform: translateY(-2px) scale(1);
+      }
+    }
+
+    .section {
+      background: var(--bg-white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-lg);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+      border-left: 4px solid var(--primary-color);
+      padding-left: 1rem;
+    }
+
+    .publication-item {
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      background: var(--bg-light);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      font-weight: 400;
+    }
+
+    .publication-item:hover {
+      background: white;
+      border-left-color: var(--primary-color);
+      box-shadow: var(--shadow);
+      transform: translateX(5px);
+    }
+
+    .publication-item a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      display: inline-block;
+      padding: 0.2rem 0;
+    }
+
+    .publication-item a:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+
+    .publication-item .pub-label {
+      color: var(--text-dark);
+      font-weight: 400;
+    }
+
+    .publication-meta {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .logo-bar {
+      max-width: 1100px;
+      margin: 0.25rem auto 2rem;
+      padding: 0.85rem 1.5rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.65rem;
+    }
+
+    .logo-bar a,
+    .logo-bar a:hover,
+    .logo-bar a:focus,
+    .logo-bar a:visited {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 28px;
+      flex: 0 0 auto;
+      text-decoration: none;
+      opacity: 0.78;
+      transition: opacity 0.25s ease;
+    }
+
+    .logo-bar a:hover {
+      opacity: 1;
+    }
+
+    .logo-bar img {
+      display: block;
+      height: 30px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      nav {
+        padding: 0.5rem 0;
+      }
+
+      nav .nav-container {
+        gap: 0.5rem;
+        padding: 0 1rem;
+      }
+
+      nav a {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+        margin: 1rem auto;
+      }
+
+      .hero {
+        padding: 1.5rem;
+      }
+
+      .hero-photo {
+        width: 72px;
+        height: 72px;
+      }
+
+      .hero-content h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero-content h1 span {
+        font-size: 0.65em !important;
+        display: block;
+        margin-left: 0 !important;
+        margin-top: 0.25rem;
+      }
+
+      .hero-content .tagline {
+        font-size: 1rem;
+      }
+
+      .hero-content .experience,
+      .hero-content .education,
+      .hero-content .skills {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .section {
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .publication-item {
+        padding: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .social-links {
+        gap: 0.75rem;
+      }
+
+      .social-links a,
+      .social-links button {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .logo-bar {
+        gap: 1rem;
+        padding: 0.85rem 1rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-content .tagline {
+        font-size: 1rem;
+      }
+
+      .section {
+        padding: 1rem;
+        border-radius: 15px;
+      }
+
+      .section h2 {
+        font-size: 1.3rem;
+      }
+
+      nav a {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
+
 <body>
+  <nav>
+    <div class="nav-container">
+      <a href="#about" data-panel="about" class="is-active" aria-current="page">About</a>
+      <a href="#innovation" data-panel="innovation">Innovation</a>
+      <a href="#achievements" data-panel="achievements">Achievements</a>
+      <a href="https://www.zhihu.com/people/MR-Peng" target="_blank" rel="noopener noreferrer">Blog</a>
+    </div>
+  </nav>
 
-  <a class="skip-link" href="#main">Skip to main content</a>
-  <div class="shell">
+  <div class="container">
+    <section id="about" class="hero view-panel is-active" data-panel="about">
+      <div class="hero-content">
+        <img class="hero-photo" src="pics/photo/avatar.jpg" alt="XiaoXiao Peng" loading="lazy">
+        <h1>XiaoXiao Peng<span style="font-size: 0.7em; margin-left: 0.5rem;">彭肖肖</span></h1>
+        <div class="tagline">算法开发工程师 · 多模态大模型与自动驾驶感知</div>
+        <div class="experience">先后于 <strong>蚂蚁集团</strong>、<strong>smart 汽车</strong>、<strong>大华股份</strong> 从事视觉感知与多模态大模型算法开发。</div>
+        <div class="education">硕士毕业于 <strong>华侨大学</strong>（软件工程 Top 10%），本科 <strong>南昌航空大学</strong>。</div>
+        <div class="skills">熟练 <code>C / C++ / Python</code>、<code>PyTorch / TensorFlow</code>、<code>MATLAB</code>、<code>K8s</code>、<code>Docker</code>。</div>
+        <div class="social-links">
+          <a href="https://github.com/shawxiaodahua" target="_blank"><span>🔗</span> GitHub</a>
+          <a href="https://www.zhihu.com/people/MR-Peng" target="_blank" rel="noopener noreferrer"><span>📝</span> Zhihu</a>
 
-    <aside class="rail">
-      <div class="rail-card">
-        <div class="avatar" data-brand-mark="XiaoXiao Peng" aria-hidden="true">XP</div>
-        <h1 class="rail-name">XiaoXiao Peng<span aria-hidden="true">Peng Xiaoxiao</span></h1>
-        <p class="rail-positioning">Multimodal LLM · VLA · Embodied AI</p>
-        <p class="rail-meta">Hangzhou, China · Open to opportunities</p>
-
-        <nav class="rail-nav" aria-label="Sections">
-          <a href="#work" class="is-active" aria-current="true">Selected Work</a>
-          <a href="#innovation">Innovation</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
-          <a href="work.html">Full Technical Detail</a>
-          <a href="writing.html">Writing</a>
-        </nav>
-
-        <div class="rail-contact">
-          <a href="mailto:18650113070@163.com"><span>Email</span><span aria-hidden="true">&#9993;</span></a>
-          <button type="button" data-copy-text="18650113070" aria-describedby="wechat-hint"><span class="label">WeChat</span><span class="visually-hidden" data-copy-status aria-live="polite"></span><span aria-hidden="true">&#128172;</span></button>
-          <a href="https://www.zhihu.com/people/MR-Peng" target="_blank" rel="noopener noreferrer"><span>Zhihu</span><span aria-hidden="true">&#8599;</span></a>
-          <a href="https://github.com/shawxiaodahua" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span aria-hidden="true">&#8599;</span></button>
+          <a href="mailto:18650113070@163.com" class="email-link"><span>📧</span> Email</a>
+          <button type="button" class="wechat-copy" data-copy-text="18650113070" aria-label="Copy WeChat ID 18650113070"><span aria-hidden="true">💬</span> <span class="wechat-copy-label">WeChat</span></button>
         </div>
-        <p class="visually-hidden" id="wechat-hint">Copies the WeChat ID to your clipboard.</p>
       </div>
-    </aside>
+    </section>
 
-    <main class="main-col" id="main" tabindex="-1">
+    <section id="innovation" class="section view-panel" data-panel="innovation">
+      <h2>🔬 Innovation</h2>
 
-      <section class="section" id="work">
-        <h2>Selected Work</h2>
+      <div class="publication-item">
+        <span class="pub-label">人机协同 Rubric 数据范式链路，闭环数据生产与模型优化体系。</span>
+        <div class="publication-meta">专家对齐、动态 rubric 生成、GPToQuery 人机协同与 LLM-as-judge 联合排序，rubric 作为奖励信号引导 RL 训练。共情离线评测 SFT +2.24pt、RL +5.63pt，线上 AB 赞踩比稳定提升 6.5%–13%，相关模型版本全量上线。</div>
+        <div class="tags">
+          <span class="tag">2025</span>
+          <span class="tag">Multimodal LLM</span>
+          <span class="tag">RL</span>
+          <span class="tag">Ant Group</span>
+        </div>
+      </div>
 
-        <article class="work-card">
-          <h3>Rubric Data Pipeline & AI-Assisted Annotation <span class="org">· Ant Group, 2025.07 – 2026.01</span></h3>
-          <p>Built the human-in-the-loop data production and model-optimisation loop for empathetic medical dialogue: expert alignment, dynamic rubric generation, GPT-assisted query rewriting, and LLM-as-judge pairwise ranking, with rubrics reused as the reward signal for RL.</p>
-          <p>Also led a LangChain/ReAct workflow that automates medical text annotation, and a three-tier automated QC pipeline whose SFT-tuned multimodal fact-checking raised data acceptance accuracy by 50%.</p>
-          <div class="chips">
-            <span class="chip">Annotation accuracy +40%</span>
-            <span class="chip">Throughput +50%</span>
-            <span class="chip">SFT +2.24 pt</span>
-            <span class="chip">RL +5.63 pt</span>
-            <span class="chip">Thumbs-up/down +6.5% to +13%</span>
-            <span class="chip plain">Full rollout</span>
-          </div>
-        </article>
+      <div class="publication-item">
+        <span class="pub-label">医疗数据智能标注辅助与三级质检体系，闭环数据全链路管理。</span>
+        <div class="publication-meta">LangChain/ReAct 结构化工作流 + 医学 RAG 自动化标注，三层 Pipeline 全流程自动质控，SFT 微调多模态事实校验：标注准确率 +40%、处理效率 +50%、验收准确率 +50%。</div>
+        <div class="tags">
+          <span class="tag">2025</span>
+          <span class="tag">LLM</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Ant Group</span>
+        </div>
+      </div>
 
-        <article class="work-card">
-          <h3>SmartMapNet <span class="org">· Smart Auto, 2024.06 – 2025.06</span></h3>
-          <p>Online vectorized HD-map perception covering lane lines, parking-space lines, low-lying static obstacles and traffic signs from 7 surround-view cameras plus LiDAR, on Nvidia Orin X.</p>
-          <p>MapTR-based encoder/decoder with LSS view transformation, BEVSeg and PVSeg auxiliary supervision, VDDL loss for geometric distortion, a dedicated two-stage polygon matcher for low obstacles, and PTQ post-training quantization for deployment.</p>
-          <div class="chips">
-            <span class="chip">7V + LiDAR</span>
-            <span class="chip">Orin X</span>
-            <span class="chip">PTQ quantized</span>
-            <span class="chip plain">Shipped on AVP / LP</span>
-          </div>
-        </article>
+      <div class="publication-item">
+        <span class="pub-label">SmartMapNet：在线矢量化高精地图框架，端到端感知静态障碍物。</span>
+        <div class="publication-meta">基于 MapTR 构建，LSS 鱼眼 BEV 特征编码 + Transformer 解码，BEVSeg/PVSeg 辅助监督、VDDL 优化几何形状、PTQ 量化部署于 Orin X，实车测试通过，AVP/LP 项目量产。</div>
+        <div class="tags">
+          <span class="tag">2024</span>
+          <span class="tag">BEV</span>
+          <span class="tag">Mapping</span>
+          <span class="tag">Smart Auto</span>
+        </div>
+      </div>
 
-        <article class="work-card">
-          <h3>Parking_OneNet <span class="org">· Smart Auto, 2022.09 – 2024.09</span></h3>
-          <p>Single multi-task 2D network over four fisheye IPM bird's-eye views detecting in-space static obstacles — wheel stops, ground locks — and wall/column ground contact points, deployed on Orin N.</p>
-          <p>Customised angle prediction with KLD loss and PSC encoding, RANSAC contact-point refinement, AB-point and depth-based pose correction, corner-rotation handling for tilted scenes, and Kalman fusion to stop box jitter at IPM seams.</p>
-          <div class="chips">
-            <span class="chip">4× fisheye IPM</span>
-            <span class="chip">Orin N</span>
-            <span class="chip">>95% parking success</span>
-            <span class="chip plain">APA / RPA / RSPA production</span>
-          </div>
-        </article>
+      <div class="publication-item">
+        <span class="pub-label">Parking_OneNet：四路鱼眼环视 IPM 泊车 2D 多任务网络。</span>
+        <div class="publication-meta">差异化多尺度特征融合 + 旋转目标检测，KLD Loss / PSC 编码优化角度预测，卡尔曼滤波与历史帧加权融合解决遮挡与抖动；APA/RPA/RSPA 开放场景泊车成功率 &gt;95%，AVP 实车闭环联调。</div>
+        <div class="tags">
+          <span class="tag">2022-2024</span>
+          <span class="tag">Parking</span>
+          <span class="tag">Smart Auto</span>
+        </div>
+      </div>
 
-        <article class="work-card">
-          <h3>VLA-Handbook <span class="org">· Independent, ongoing</span></h3>
-          <p>An open-source handbook and working notes on vision-language-action models: control stacks, data collection routes, evaluation, and scaling behaviour, kept as a running record of self-directed study.</p>
-          <p><a href="https://github.com/shawxiaodahua/VLA-Handbook" target="_blank" rel="noopener noreferrer">github.com/shawxiaodahua/VLA-Handbook</a></p>
-          <div class="chips">
-            <span class="chip">Open source</span>
-            <span class="chip plain">VLA · embodied intelligence</span>
-          </div>
-        </article>
-      </section>
+      <div class="publication-item">
+        <span class="pub-label">环形平滑损失 + ShuffleNet 旋转目标检测，边缘端多平台部署。</span>
+        <div class="publication-meta">海思 3559A / 寒武纪 220 / Atlas 310 多平台适配，目标抓拍率 95.56%、准确率 95.80%（较基线分别 +0.5pt、+1pt），纳入公司基础算法库。</div>
+        <div class="tags">
+          <span class="tag">2021</span>
+          <span class="tag">Rotated Detection</span>
+          <span class="tag">Edge</span>
+          <span class="tag">Dahua</span>
+        </div>
+      </div>
 
-      <section class="section" id="innovation">
-        <h2>Innovation</h2>
+      <div class="publication-item">
+        <span class="pub-label">机场保障节点事件检测，飞机 / 廊桥 / 特殊车辆运动状态建模。</span>
+        <div class="publication-meta">YOLOv5 小目标检测层 + 二次识别，IoU 匹配运动状态模型，事件编码上报；中标 2 个机场项目并参与多个行业算法 PK。</div>
+        <div class="tags">
+          <span class="tag">2021</span>
+          <span class="tag">Airport</span>
+          <span class="tag">Dahua</span>
+        </div>
+      </div>
 
-        <article class="work-card">
-          <h3>Rubric Data Pipeline <span class="org">· Ant Group</span></h3>
-          <p>Human-in-the-loop data production loop for empathetic medical dialogue with dynamic rubric generation, GPT-assisted query rewriting, and LLM-as-judge pairwise ranking. Rubrics reused as RL reward signal. Data acceptance accuracy improved by 50%.</p>
-        </article>
+      <div class="publication-item">
+        <span class="pub-label">开源 Inclusion AI ABench 评测基准。</span>
+        <div class="publication-meta">
+          <a href="https://github.com/inclusionAI/ABench" target="_blank">github.com/inclusionAI/ABench</a>
+        </div>
+        <div class="tags">
+          <span class="tag">Open Source</span>
+          <span class="tag">Evaluation</span>
+        </div>
+      </div>
 
-        <article class="work-card">
-          <h3>SmartMapNet <span class="org">· Smart Auto</span></h3>
-          <p>Online vectorized HD-map perception from 7 surround-view cameras + LiDAR on Nvidia Orin X. MapTR encoder/decoder with LSS view transformation, BEVSeg/PVSeg auxiliary supervision, VDDL loss for geometric distortion, and two-stage polygon matcher for low obstacles.</p>
-        </article>
+    </section>
 
-        <article class="work-card">
-          <h3>Parking_OneNet <span class="org">· Smart Auto</span></h3>
-          <p>2D multi-task network over four fisheye IPM bird's-eye views detecting wheel stops, ground locks, walls and columns. PTQ-quantized for Orin N deployment. >95% parking success in production.</p>
-        </article>
+    <section id="achievements" class="section view-panel" data-panel="achievements">
+      <h2>🏆 Achievements</h2>
 
-        <article class="work-card">
-          <h3>VLA-Handbook <span class="org">· Ongoing</span></h3>
-          <p>Open-source handbook on vision-language-action models covering control stacks, data collection, evaluation, and scaling behaviour. Self-directed study record.</p>
-        </article>
-      </section>
+      <h3 style="font-size: 1.2rem; margin: 0 0 0.6rem; color: var(--primary-color);">竞赛与获奖</h3>
 
-      <section class="section" id="blog">
-        <h2>Blog</h2>
+      <div class="card-item">
+        <div class="publication-item">
+          <span class="pub-label">IEEE BigData 2022 "Urban Digital Twins for Intelligent Road Inspection" UDTIRI</span>
+          <div class="publication-meta">2022/12 · 第一名 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">ECV2022 客流统计算法（惠普冠名钻石榜赛道）</span>
+          <div class="publication-meta">2022/07 · top1 一等奖 · 队员</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">科大讯飞 1024 开发者算法竞赛 · 柑橘病虫害检测赛道</span>
+          <div class="publication-meta">2021/10 · top1 一等奖 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">TIANCHI IEEE UV 2022 "Vision Meets Algae" 目标检测挑战赛</span>
+          <div class="publication-meta">2022/11 · 第三名 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">英特尔人工智能创新应用大赛</span>
+          <div class="publication-meta">2024/12 · top2</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">2023 无锡国际人工智能算法大赛 · 非机动车违停检测赛道</span>
+          <div class="publication-meta">2023/11 · 第四名 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">2023 长三角（芜湖）算法赛 · 车载视角多路标牌检测识别赛道</span>
+          <div class="publication-meta">2023/11 · 亚军 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">2022 船海数据智能应用创新大赛 · 水面/水下典型目标识别</span>
+          <div class="publication-meta">2022/10 · top4 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">华为云杯深圳开放数据大赛（垃圾分类识别）</span>
+          <div class="publication-meta">2020/07 · 二等奖 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">ECV2021 算法竞赛 · 反光衣识别算法赛道</span>
+          <div class="publication-meta">2021/09 · top4 二等奖 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">URPC 全国水下机器人竞赛（声学 / 光学赛道）</span>
+          <div class="publication-meta">二等奖 · 光学赛道 top7 三等奖</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">华为杯 / 福建省研究生数学建模大赛</span>
+          <div class="publication-meta">二等奖 / 三等奖 · 队长</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">知乎博客被知名自动驾驶社区媒体「自动驾驶之心」录用并发布</span>
+          <div class="publication-meta">2024/10 · 两篇</div>
+        </div>
+      </div>
 
-        <p>Recent posts:</p>
-        <ul class="post-list">
-          <li>
-            <a class="post-link" href="writing.html" data-md="" data-meta="" data-title="Writing Portfolio">
-              Writing Portfolio
-            </a>
-          </li>
-          <!-- Blog posts will be dynamically loaded from /manuscripts/ -->
-        </ul>
-      </section>
+      <h3 style="font-size: 1.2rem; margin: 1.2rem 0 0.6rem; color: var(--primary-color);">论文发表</h3>
 
-    </main>
+      <div class="card-item">
+        <div class="publication-item">
+          <span class="pub-label">HSGM: A Hierarchical Similarity Graph Module for Object Re-Identification</span>
+          <div class="publication-meta">ICME 2022 (oral) · CCF B 多媒体国际旗舰会议</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">PON: Proposal Optimization Network for Temporal Action Proposal Generation</span>
+          <div class="publication-meta">ICIC 2020 (oral) · EI 检索</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">Periodic Action Temporal Localization Method Based on Two-Path Architecture for Product Counting in Sewing Video</span>
+          <div class="publication-meta">ICIC 2019 (oral) · EI 检索</div>
+        </div>
+        <div class="publication-item">
+          <span class="pub-label">Model Fusion Solution for IEEE UV 2022 "Vision Meets Algae" Object Detection</span>
+          <div class="publication-meta">IEEE UV 2022 Workshop · EI 检索</div>
+        </div>
+      </div>
+
+      <h3 style="font-size: 1.2rem; margin: 1.2rem 0 0.6rem; color: var(--primary-color);">专利</h3>
+
+      <div class="card-item">
+        <p style="font-size: 0.95rem; color: var(--text-light);">
+          共申请专利 <strong>13</strong> 篇，其中 <strong>4</strong> 篇已授权，<strong>9</strong> 篇实审中。
+        </p>
+        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem; line-height: 1.7;">
+          涵盖视频时序动作检测、车牌识别、车位与墙柱检测、泊车障碍物检测、唇语识别、轮轴识别、视频目标检测等方向，部分已授权落地。
+        </p>
+      </div>
+    </section>
+
+    <div class="logo-bar">
+      <a href="https://www.antgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Ant Group"><img src="pics/logos/ant-official.png" alt="Ant Group" loading="lazy"></a>
+      <a href="https://www.smart.com.cn/" target="_blank" rel="noopener noreferrer" aria-label="Smart Auto"><img src="pics/logos/smart-official.svg" alt="smart" loading="lazy"></a>
+      <a href="https://www.dahuatech.com/" target="_blank" rel="noopener noreferrer" aria-label="Dahua Technology"><img src="pics/logos/dahua-official.png" alt="Dahua" loading="lazy"></a>
+      <a href="https://www.hqu.edu.cn/" target="_blank" rel="noopener noreferrer" aria-label="Huaqiao University"><img src="pics/logos/hqu.svg" alt="Huaqiao University" loading="lazy"></a>
+      <a href="https://www.ncau.edu.cn/" target="_blank" rel="noopener noreferrer" aria-label="NCAU"><img src="pics/logos/ncau.svg" alt="Nanchang University of Aeronautics and Astronautics" loading="lazy"></a>
+    </div>
+
+    <footer style="text-align:center; color: rgba(255,255,255,0.85); font-size: 0.85rem; padding: 0.5rem 1rem 2rem;">
+      © 2026 XiaoXiao Peng · 彭肖肖 — 用技术让感知更智能
+    </footer>
   </div>
+  <script>
+    (function () {
+      var navLinks = document.querySelectorAll('nav a[data-panel]');
+      var panels = document.querySelectorAll('.view-panel');
 
-  <footer class="logo-bar" aria-label="Affiliations">
-    <a href="https://www.antgroup.com/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/ant.svg" alt="Ant Group"></a>
-    <a href="https://www.smart.com.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/smart.svg" alt="Smart Auto"></a>
-    <a href="https://www.dahuatech.com/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/dahua.svg" alt="Dahua Technology"></a>
-    <a href="https://www.hqu.edu.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/hqu.svg" alt="Huaqiao University"></a>
-    <a href="https://www.ncau.edu.cn/" target="_blank" rel="noopener noreferrer"><img src="pics/logos/ncau.svg" alt="Nanchang University of Aeronautics and Astronautics"></a>
-  </footer>
+      function activatePanel(name, shouldPush) {
+        panels.forEach(function (p) {
+          p.classList.toggle('is-active', p.getAttribute('data-panel') === name);
+        });
+        navLinks.forEach(function (a) {
+          var on = a.getAttribute('data-panel') === name;
+          a.classList.toggle('is-active', on);
+          if (on) a.setAttribute('aria-current', 'page');
+          else a.removeAttribute('aria-current');
+        });
+        if (shouldPush !== false) {
+          var url = window.location.pathname + window.location.search + '#' + name;
+          history.pushState({ panel: name }, '', url);
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
 
-  <script src="main.js"></script>
+      function panelFromHash() {
+        var h = window.location.hash.replace('#', '');
+        return h || 'about';
+      }
+
+      navLinks.forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          activatePanel(a.getAttribute('data-panel'));
+        });
+      });
+
+      window.addEventListener('popstate', function (e) {
+        var name = (e.state && e.state.panel) || panelFromHash();
+        activatePanel(name, false);
+      });
+
+      document.querySelectorAll('.wechat-copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var text = btn.getAttribute('data-copy-text') || '';
+          function done() {
+            btn.classList.add('is-copied');
+            var label = btn.querySelector('.wechat-copy-label');
+            if (label) label.textContent = '已复制';
+            setTimeout(function () {
+              btn.classList.remove('is-copied');
+              if (label) label.textContent = 'WeChat';
+            }, 1800);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(fallback);
+          } else { fallback(); }
+          function fallback() {
+            var ta = document.createElement('textarea');
+            ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta);
+            done();
+          }
+        });
+      });
+
+      activatePanel(panelFromHash(), false);
+    })();
+  </script>
+
 </body>
+
 </html>
