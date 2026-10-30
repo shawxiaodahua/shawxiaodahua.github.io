@@ -606,6 +606,338 @@
     html {
       scroll-behavior: smooth;
     }
+
+    body .view-panel:not(.is-active) {
+      display: none;
+    }
+
+    /* ---------- Visitor analytics ---------- */
+    .visitor-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .visitor-head h2 {
+      margin-bottom: 0.35rem;
+    }
+
+    .visitor-intro {
+      max-width: 44rem;
+      margin-bottom: 0 !important;
+      color: var(--text-light) !important;
+      font-size: 0.93rem;
+    }
+
+    .visitor-refresh {
+      flex: 0 0 auto;
+      border: 1px solid var(--primary-color);
+      background: var(--bg-white);
+      color: var(--primary-color);
+      border-radius: 10px;
+      padding: 0.55rem 0.85rem;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .visitor-refresh:hover:not(:disabled) {
+      background: var(--primary-color);
+      color: var(--bg-white);
+    }
+
+    .visitor-refresh:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 3px;
+    }
+
+    .visitor-refresh:disabled {
+      cursor: wait;
+      opacity: 0.55;
+    }
+
+    .visitor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin: 1.25rem 0 1rem;
+    }
+
+    .visitor-stat {
+      min-width: 0;
+      padding: 1rem 1.05rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--bg-white), var(--bg-light));
+      box-shadow: var(--shadow);
+    }
+
+    .visitor-stat .label {
+      color: var(--text-light);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .visitor-stat .value {
+      margin-top: 0.25rem;
+      color: var(--text-dark);
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .visitor-stat .hint {
+      margin-top: 0.2rem;
+      color: var(--text-light);
+      font-size: 0.76rem;
+    }
+
+    .visitor-map-card {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #0b1220, #111c35);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .visitor-map-topline {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      color: #dbeafe;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    #visitor-updated {
+      color: #93a4bd;
+      font-size: 0.74rem;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .visitor-map {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 0.6rem;
+      border-radius: 12px;
+      background: radial-gradient(circle at 50% 45%, #152544 0%, #0b1220 72%);
+    }
+
+    .visitor-map-gridline {
+      stroke: rgba(148, 163, 184, 0.12);
+      stroke-width: 1;
+    }
+
+    .visitor-map-land-dot {
+      fill: #3b82f6;
+      opacity: 0.29;
+    }
+
+    .visitor-map-point {
+      outline: none;
+      cursor: default;
+    }
+
+    .visitor-map-halo {
+      fill: #38bdf8;
+      opacity: 0.16;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .visitor-map-point.is-current .visitor-map-halo {
+      animation: visitorPulse 2.4s ease-out infinite;
+    }
+
+    .visitor-map-dot {
+      fill: #38bdf8;
+      stroke: #0b1220;
+      stroke-width: 1.5;
+      opacity: 0.96;
+      transition: fill 0.2s ease;
+    }
+
+    .visitor-map-point:hover .visitor-map-dot,
+    .visitor-map-point:focus .visitor-map-dot {
+      fill: #7dd3fc;
+      stroke: #ffffff;
+      stroke-width: 2;
+    }
+
+    .visitor-map-point:focus .visitor-map-halo {
+      opacity: 0.38;
+    }
+
+    @keyframes visitorPulse {
+      0% { opacity: 0.32; transform: scale(0.8); }
+      70% { opacity: 0.03; transform: scale(1.6); }
+      100% { opacity: 0; transform: scale(1.8); }
+    }
+
+    .visitor-status {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 9px;
+      color: #bfdbfe;
+      background: rgba(30, 64, 175, 0.24);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .visitor-status[data-state="error"] {
+      color: #fecaca;
+      background: rgba(127, 29, 29, 0.34);
+    }
+
+    .visitor-lower {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(220px, 0.8fr);
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .visitor-lower h3 {
+      margin: 0 0 0.7rem;
+      font-size: 1rem;
+      color: var(--text-dark);
+    }
+
+    .visitor-countries {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem 0.9rem;
+    }
+
+    .visitor-country {
+      display: grid;
+      grid-template-columns: minmax(84px, 1fr) 58px 30px;
+      align-items: center;
+      gap: 0.55rem;
+      min-width: 0;
+      padding: 0.55rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-light);
+      font-size: 0.84rem;
+    }
+
+    .visitor-country-name {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-width: 0;
+      font-weight: 500;
+    }
+
+    .visitor-country-name span:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .visitor-country-flag {
+      flex: 0 0 auto;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .visitor-country-bar {
+      height: 6px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--border);
+    }
+
+    .visitor-country-bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    }
+
+    .visitor-country-count {
+      color: var(--primary-color);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      text-align: right;
+    }
+
+    .visitor-empty {
+      grid-column: 1 / -1;
+      padding: 1rem;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      color: var(--text-light) !important;
+      font-size: 0.86rem;
+      text-align: center;
+    }
+
+    .visitor-note {
+      padding: 1rem 1.1rem;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      background: var(--bg-light);
+    }
+
+    .visitor-note p {
+      margin-bottom: 0;
+      color: var(--text-light);
+      font-size: 0.82rem;
+      line-height: 1.65;
+    }
+
+    .visitor-note .visitor-source {
+      margin-top: 0.55rem;
+      font-size: 0.72rem;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 900px) {
+      .visitor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .visitor-lower {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .visitor-head {
+        flex-direction: column;
+      }
+
+      .visitor-grid,
+      .visitor-countries {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .visitor-stat .value {
+        font-size: 1.45rem;
+      }
+
+      .visitor-map-card {
+        padding: 0.65rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .visitor-map-point.is-current .visitor-map-halo {
+        animation: none;
+      }
+    }
   </style>
 </head>
 
@@ -614,6 +946,7 @@
     <div class="nav-container">
       <a href="#about" data-panel="about" class="is-active" aria-current="page">About</a>
       <a href="#achievements" data-panel="achievements">Achievements</a>
+      <a href="#visitors" data-panel="visitors">Visitors</a>
       <a href="https://www.zhihu.com/people/MR-Peng" target="_blank" rel="noopener noreferrer">Blog</a>
       <button type="button" id="lang-toggle" aria-label="切换语言 / Switch language">中文</button>
     </div>
@@ -824,7 +1157,82 @@
       </div>
     </section>
 
-    <div class="section-title i18n" data-en="Work Experience" data-zh="Work Experience 工作经历">Work Experience</div>
+    <section id="visitors" class="section view-panel" data-panel="visitors">
+      <div class="visitor-head">
+        <div>
+          <h2><span aria-hidden="true">🌍</span> <span class="i18n" data-en="Visitors" data-zh="访问统计">Visitors</span></h2>
+          <p class="visitor-intro i18n"
+            data-en="Anonymous, aggregate statistics from this site. The map updates as visitors arrive from different countries and regions."
+            data-zh="本站的匿名聚合访问统计。随着来自不同国家和地区的访客访问，地图会自动更新。">
+            Anonymous, aggregate statistics from this site. The map updates as visitors arrive from different countries
+            and regions.
+          </p>
+        </div>
+        <button type="button" id="visitor-refresh" class="visitor-refresh"
+          aria-label="Refresh visitor statistics">
+          <span class="i18n" data-en="Refresh" data-zh="刷新">Refresh</span>
+        </button>
+      </div>
+
+      <div class="visitor-grid" data-visitor-stats>
+        <div class="visitor-stat">
+          <div class="label i18n" data-en="Total visits" data-zh="总访问量">Total visits</div>
+          <div class="value" id="visitor-total">—</div>
+          <div class="hint i18n" data-en="Aggregated across all visitors" data-zh="所有访客的聚合值">Aggregated
+            across all visitors</div>
+        </div>
+        <div class="visitor-stat">
+          <div class="label i18n" data-en="Countries / regions" data-zh="国家 / 地区">Countries / regions</div>
+          <div class="value" id="visitor-countries">—</div>
+          <div class="hint i18n" data-en="Locations with recorded visits" data-zh="有访问记录的来源地">Locations with
+            recorded visits</div>
+        </div>
+        <div class="visitor-stat">
+          <div class="label i18n" data-en="Your approximate region" data-zh="你的大致地区">Your approximate region</div>
+          <div class="value" id="visitor-region">—</div>
+          <div class="hint i18n" data-en="Country-level only; never precise location" data-zh="仅国家/地区级别，不记录精确位置">Country-level
+            only; never precise location</div>
+        </div>
+      </div>
+
+      <div class="visitor-map-card">
+        <div class="visitor-map-topline">
+          <span class="i18n" data-en="Visitor geography" data-zh="访客地理分布">Visitor geography</span>
+          <span id="visitor-updated"></span>
+        </div>
+        <svg id="visitor-map" class="visitor-map" viewBox="0 0 720 360" role="img"
+          aria-labelledby="visitor-map-title">
+          <title id="visitor-map-title">World map of site visitors by country</title>
+          <g id="visitor-map-grid" aria-hidden="true"></g>
+          <g id="visitor-map-land" aria-hidden="true"></g>
+          <g id="visitor-map-points"></g>
+        </svg>
+        <div id="visitor-status" class="visitor-status" role="status" aria-live="polite"></div>
+      </div>
+
+      <div class="visitor-lower">
+        <div>
+          <h3 class="i18n" data-en="Top locations" data-zh="主要来源地">Top locations</h3>
+          <div id="visitor-country-list" class="visitor-countries"></div>
+        </div>
+        <aside class="visitor-note">
+          <h3 class="i18n" data-en="Privacy" data-zh="隐私说明">Privacy</h3>
+          <p class="i18n"
+            data-en="Only an approximate country or region is derived from the visitor IP. No cookies, names, accounts, or precise locations are stored. Visitors with Do Not Track enabled are not counted."
+            data-zh="仅根据访客 IP 推断大致的国家/地区。不存储 Cookie、姓名、账号或精确位置。启用“请勿跟踪”的访客不会被统计。">
+            Only an approximate country or region is derived from the visitor IP. No cookies, names, accounts, or precise
+            locations are stored. Visitors with Do Not Track enabled are not counted.
+          </p>
+          <p class="visitor-source i18n"
+            data-en="Aggregate counts: counterapi.dev · Geolocation: ipwho.is"
+            data-zh="聚合计数：counterapi.dev · 地理定位：ipwho.is">
+            Aggregate counts: counterapi.dev · Geolocation: ipwho.is
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="section-title i18n" data-en="Work Experience" data-zh="Work Experience 工作经历">Work Experience</div>
     <div class="experience-logos">
       <div class="experience-logo-item">
         <img src="pics/logos/dahua.png" alt="Dahua" loading="lazy">
@@ -870,6 +1278,7 @@
           history.pushState({ panel: name }, '', url);
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.dispatchEvent(new CustomEvent('panelchange', { detail: { panel: name } }));
       }
 
       function panelFromHash() {
@@ -941,6 +1350,7 @@
       activatePanel(panelFromHash(), false);
     })();
   </script>
+  <script src="visitors.js" defer></script>
 
 </body>
 
